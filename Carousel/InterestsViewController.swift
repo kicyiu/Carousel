@@ -61,15 +61,19 @@ extension InterestsViewController : UIScrollViewDelegate, UICollectionViewDelega
         let layout = self.collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
         let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
         var offset = targetContentOffset.pointee
+        
+        //index: to know the item to set
         let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
         let roundedIndex = round(index)
         
         print("cellWidthIncludingSpacing: \(cellWidthIncludingSpacing)" )
         print("offset: \(offset)" )
+        print("scrollView contentInset left: \(scrollView.contentInset.left)" )
         print("index: \(index)" )
         print("rounded index: \(roundedIndex)" )
         
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
+ 
         targetContentOffset.pointee = offset
         
         print("offset: \(offset)" )
